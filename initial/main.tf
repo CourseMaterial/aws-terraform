@@ -42,21 +42,3 @@ resource "aws_security_group" "security_group" {
 
   vpc_id = aws_vpc.vpc.id
 }
-
-resource "aws_instance" "instance" {
-    ami           = lookup(var.ami_ids, var.os_type, null)
-    instance_type = var.instance_size
-    vpc_security_group_ids = [aws_security_group.security_group.id]
-    subnet_id = aws_subnet.subnet.id               
-
-    root_block_device {
-        delete_on_termination = var.disk.delete_on_termination
-        encrypted = var.disk.encrypted
-        volume_size = var.disk.volume_size
-        volume_type = var.disk.volume_type
-    }
-
-    tags = {
-        Name = var.instance_name
-    }
-}

@@ -1,4 +1,9 @@
-output "ip" {
+output "private-ip" {
     description = "Private IP Address of EC2"
-    value = aws_instance.server.private_ip
+    value = aws_instance.instance.private_ip
+}
+
+output "public-ip" {
+  description = "Public IP Address of EC2"
+  value = aws_instance.instance.public_ip
 }

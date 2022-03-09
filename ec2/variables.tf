@@ -1,17 +1,21 @@
-variable "servername"{
-    description = "Name of the server"
+variable "vpc_name"{
+    description = "Name of the vpc"
     type = string
 }
 
 variable "subnet"{
-    description = "subnet IP address space"
+    description = "subnet CIDR block"
     type = string
 }
 
+variable "instance_name"{
+    description = "Name of the instance"
+    type = string
+}
 
 variable "ami_ids" { 
+    description = "AMI ID"
     type = map
-    description = "AMI ID's to deploy"
 
     default = {
         linux = "ami-0d398eb3480cb04e7"
@@ -19,7 +23,7 @@ variable "ami_ids" {
 }
 
 variable "disk" {
-    description = "OS image to deploy"
+    description = "OS image"
     type = object({
         delete_on_termination = bool
         encrypted = bool
@@ -29,7 +33,7 @@ variable "disk" {
 } 
 
 variable "os_type" {
-    description = "OS to deploy, Linux or Windows"
+    description = "OS type: Linux or Windows"
     type = string
 }
 
@@ -37,9 +41,4 @@ variable "instance_size" {
     description = "Size of the EC2 instance"
     type = string
     default = "t2.micro"
-}
-
-variable "ec2_monitoring" {
-    description = "Configure monitoring on the EC2 instance"
-    type = bool
 }
