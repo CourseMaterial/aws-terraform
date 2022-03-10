@@ -12,8 +12,11 @@ provider "aws" {
 }
 
 resource "aws_vpc" "vpc" {
-  vpc_name = "${var.vpc_name}"
   cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = var.vpc_name
+  }
 }
 
 resource "aws_subnet" "subnet" {
@@ -23,7 +26,7 @@ resource "aws_subnet" "subnet" {
 }
 
 resource "aws_security_group" "security_group" {
-  name        = "Variable-SG"
+  name        = var.sg_name
   description = "Security group for variables lab"
 
   ingress {
