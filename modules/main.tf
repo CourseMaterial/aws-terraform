@@ -1,7 +1,7 @@
 
 
 provider "aws" {
-    region = "eu-west-1"
+    region = "us-east-1"
 }
 
 module "work_queue" {
